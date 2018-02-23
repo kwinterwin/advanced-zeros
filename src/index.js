@@ -14,7 +14,7 @@ function prime(number_p){
 module.exports = function getZerosCount(number, base) {
     var count = 0, a=0, pow=0;
     
-    for(var i=2;i<base;i++){
+    for(var i=2;i<=base;i++){
        if(base%i==0 && prime(base)==false){
            base=base/i;
            if(base%i==0){

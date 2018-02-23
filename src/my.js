@@ -13,15 +13,18 @@ function prime(number_p){
 
 function getZerosCount(number,base) {
     var count = 0, a=0, pow=0;
-    
-    for(var i=2;i<base;i++){
-       if(base%i==0 && prime(base)==false){
+    var i = 2;
+    while(i<=base){
+       if(base%i==0 && prime(base)===false){
            base=base/i;
-           if(base%i==0){
-               i--;
+           if(base%i!=0){
+               i++;
            }
        }
-       else pow=base;
+       else {
+            pow=base;
+            break;
+       }
     }
     console.log(pow);
 
@@ -34,7 +37,7 @@ function getZerosCount(number,base) {
           }
       }
       return count;
-    // if(prime(base)==false) console.log("false");
   }
 // getZerosCount(47);
-console.log(getZerosCount(14423541,193));
+console.log(getZerosCount(71398757, 12));
+// console.log(prime(3));
