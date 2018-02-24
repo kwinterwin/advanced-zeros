@@ -1,9 +1,8 @@
-
 module.exports = function getZerosCount(number, base) {
    
-    var prostyeChisla = new Array();
-    var stInSystem = new Array();
-    var stInNumber = new Array();
+    var prostyeChisla = [];
+    var stInSystem = [];
+    var stInNumber = [];
 
     for (var i = 2; i <= base; i++) {
         if (base % i == 0) {
@@ -23,36 +22,27 @@ module.exports = function getZerosCount(number, base) {
             }
         }
     }
-
-    for (var i = 2; i <= number; i++) {
-        var tmp = i, n;
-        for (var j = 0; j < prostyeChisla.length; j++) {
-            if (stInNumber.length <= j) {
-                n = 0;
-            } else {
-                n = stInNumber[j];
-            }
-            while (tmp % prostyeChisla[j] == 0) {
-                tmp =tmp/prostyeChisla[j];
-                n++;
-            }
-            if (stInNumber.length <= j) {
-                stInNumber.push(n);
-            } else {
-                stInNumber[j]=n;
-            }
+    
+    for (var i = 0; i < prostyeChisla.length; i++) {
+        var k = 0, t = prostyeChisla[i];
+        while (number / t != 0) {
+            k += Math.floor(number / t);
+            t *= prostyeChisla[i];
         }
-
+        stInNumber.push(Math.floor(k));
     }
 
     var num = 0;
     for (var i = 0; i < prostyeChisla.length; i++) {
-        if (num != 0 && stInNumber[i]/prostyeChisla[i] < num)
-            num = stInNumber[i]/stInSystem[i];
+        if (num != 0 && stInNumber[i] / prostyeChisla[i] < num)
+            num = stInNumber[i] / stInSystem[i];
         if (num == 0) {
-            num = stInNumber[i]/stInSystem[i];
+            num = stInNumber[i] / stInSystem[i];
         }
     }
+
+    // num=num-1;
+
    return Math.floor(num);
 }
 

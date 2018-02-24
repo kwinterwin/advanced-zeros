@@ -1,63 +1,53 @@
 function getZerosCount(number,base) {
-        var prostyeChisla = new Array();
-        var stInSystem = new Array();
-        var stInNumber = new Array();
+    var prostyeChisla = [];
+    var stInSystem = [];
+    var stInNumber = [];
 
-        for (var i = 2; i < base; i++) {
-            if (base % i == 0) {
-                var prime = true;
-                for (var j = 2; j < i; j++) {
-                    if (i % j == 0)
-                        prime = false;
+    for (var i = 2; i <= base; i++) {
+        if (base % i == 0) {
+            var prime = true;
+            for (var j = 2; j < i; j++) {
+                if (i % j == 0)
+                    prime = false;
+            }
+            var k = i, t = 0;
+            if (prime) {
+                while (base % k == 0) {
+                    k *= i;
+                    t++;
                 }
-                var k = i, t = 0;
-                if (prime) {
-                    while (base % k == 0) {
-                        k *= i;
-                        t++;
-                    }
-                    prostyeChisla.push(i);
-                    stInSystem.push(t);
-                }
+                prostyeChisla.push(i);
+                stInSystem.push(t);
             }
         }
-        console.log(prostyeChisla);
-        console.log(stInSystem);
+    }
 
-        for (var i = 2; i <= number; i++) {
-            var tmp = i, n;
-            for (var j = 0; j < prostyeChisla.length; j++) {
-                if (stInNumber.length <= j) {
-                    n = 0;
-                } else {
-                    n = stInNumber[j];
-                }
-                while (tmp % prostyeChisla[j] == 0) {
-                    tmp /= prostyeChisla[j];
-                    n++;
-                }
-                if (stInNumber.length <= j) {
-                    stInNumber.push(n);
-                } else {
-                    stInNumber[j]=n;
-                }
-            }
-
+    console.log(prostyeChisla);
+    console.log(stInSystem);
+    
+    for (var i = 0; i < prostyeChisla.length; i++) {
+        var k = 0, t = prostyeChisla[i];
+        while (number / t != 0) {
+            k += Math.floor(number / t);
+            t *= prostyeChisla[i];
         }
+        stInNumber.push(Math.floor(k));
+    }
 
-        
-        console.log(stInNumber);
+    console.log(stInNumber);
 
-        var num = 0;
-        for (var i = 0; i < prostyeChisla.length; i++) {
-            if (num != 0 && stInNumber[i] / prostyeChisla[i] < num)
-                num = stInNumber[i]/stInSystem[i];
-            if (num == 0) {
-                num = stInNumber[i]/stInSystem[i];
-            }
+    var num = 0;
+    for (var i = 0; i < prostyeChisla.length; i++) {
+        if (num != 0 && stInNumber[i] / prostyeChisla[i] < num)
+            num = stInNumber[i] / stInSystem[i];
+        if (num == 0) {
+            num = stInNumber[i] / stInSystem[i];
         }
-        console.log(num);
+    }
+
+    // num=num-1;
+        console.log(Math.floor(num));
   }
 // getZerosCount(47);
-getZerosCount(16, 16);
+getZerosCount(46899647, 232);
 // console.log(prime(3));
