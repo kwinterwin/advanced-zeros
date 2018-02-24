@@ -21,8 +21,10 @@ function getZerosCount(number,base) {
                 }
             }
         }
+        console.log(prostyeChisla);
+        console.log(stInSystem);
 
-        for (var i = 2; i < number; i++) {
+        for (var i = 2; i <= number; i++) {
             var tmp = i, n;
             for (var j = 0; j < prostyeChisla.length; j++) {
                 if (stInNumber.length <= j) {
@@ -43,16 +45,19 @@ function getZerosCount(number,base) {
 
         }
 
-         num = 0;
+        
+        console.log(stInNumber);
+
+        var num = 0;
         for (var i = 0; i < prostyeChisla.length; i++) {
             if (num != 0 && stInNumber[i] / prostyeChisla[i] < num)
-                num = stInNumber[i] / stInSystem[i];
+                num = stInNumber[i]/stInSystem[i];
             if (num == 0) {
-                num = stInNumber[i] / stInSystem[i];
+                num = stInNumber[i]/stInSystem[i];
             }
         }
         console.log(num);
   }
 // getZerosCount(47);
-getZerosCount(60559525, 147);
+getZerosCount(16, 16);
 // console.log(prime(3));
